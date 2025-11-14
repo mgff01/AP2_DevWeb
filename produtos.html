@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AP2 Store | Produtos por Categoria</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Requisito 1 e 2: Header com ícone, navegação e menu responsivo -->
+    <header class="site-header">
+      <div class="logo" aria-label="AP2 Store">
+        <svg viewBox="0 0 64 64" role="img" aria-hidden="true">
+          <path d="M20 22h24l4 30H16z" />
+          <path d="M24 22v-4a8 8 0 0 1 16 0v4" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+        </svg>
+        <span>
+          <span>AP2</span>
+          <span>Store</span>
+        </span>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
+        Menu
+      </button>
+      <nav id="site-navigation" class="site-nav" aria-label="Navegação principal">
+        <a href="index.html">Início</a>
+        <a href="produtos.html">Categorias</a>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Requisito 3: H1 e botões destacados para instruir o usuário -->
+      <section class="hero">
+        <div>
+          <h1>Escolha uma categoria e confira os produtos</h1>
+          <p>Selecione um dos filtros para carregar apenas produtos da categoria desejada.</p>
+        </div>
+        <button id="focusFilters" class="button" type="button">Ver filtros</button>
+      </section>
+
+      <!-- Requisito 6: Botões que filtram produtos por categoria -->
+      <section>
+        <div class="button-grid">
+          <button class="filter-button" data-category="beauty" type="button">Beauty</button>
+          <button class="filter-button" data-category="fragrances" type="button">Fragrances</button>
+          <button class="filter-button" data-category="furniture" type="button">Furniture</button>
+          <button class="filter-button" data-category="groceries" type="button">Groceries</button>
+        </div>
+        <p id="categoryFeedback" class="status-message" role="status"></p>
+      </section>
+
+      <!-- Requisitos 4 e 6: Container da galeria que recebe os produtos filtrados -->
+      <section class="gallery-section" aria-live="polite">
+        <h2 class="sr-only">Galeria de produtos filtrados</h2>
+        <div id="categoryGallery" class="gallery multi-column"></div>
+      </section>
+    </main>
+
+    <!-- Requisito 7: Footer com direitos autorais -->
+    <footer>
+      © 2025 Thiago Santos | Desenvolvido por mgff01
+    </footer>
+
+    <script src="scripts/common.js" defer></script>
+    <script src="scripts/products.js" defer></script>
+  </body>
+</html>
