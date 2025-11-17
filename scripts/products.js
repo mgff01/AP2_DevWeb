@@ -1,18 +1,21 @@
+//API pública dummyjson
 const CATEGORY_API_URL = 'https://dummyjson.com/products/category/';
+// Cache de elementos do DOM para evitar queries repetidas durante as interações
 const categoryGallery = document.getElementById('categoryGallery');
 const categoryFeedback = document.getElementById('categoryFeedback');
 const filterButtons = document.querySelectorAll('.filter-button');
 const focusFiltersButton = document.getElementById('focusFilters');
 const filterWrapper = document.querySelector('.button-grid');
 
-// Requisito 3: botão dedicado para direcionar o usuário aos filtros
+//botão dedicado para direcionar o usuário aos filtros
 if (focusFiltersButton && filterWrapper) {
   focusFiltersButton.addEventListener('click', () => {
     filterWrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 }
 
-// Requisito 6: filtrar produtos por categoria ao clicar nos botões
+
+// Função responsável por buscar os produtos da categoria informada
 async function fetchProductsByCategory(category) {
   const response = await fetch(`${CATEGORY_API_URL}${category}`);
   if (!response.ok) {
@@ -22,6 +25,7 @@ async function fetchProductsByCategory(category) {
   return data.products ?? [];
 }
 
+// Monta cada cartão de produto com fallback para a imagem, caso não exista thumbnail
 function buildCategoryCard(product) {
   const image = Array.isArray(product.images) && product.images.length ? product.images[0] : product.thumbnail;
   return `
@@ -36,21 +40,25 @@ function buildCategoryCard(product) {
   `;
 }
 
+// Insere os cartões na galeria de forma dinâmica
 function renderCategoryProducts(products) {
   categoryGallery.innerHTML = products.map(buildCategoryCard).join('');
 }
 
+// Desabilita ou habilita todos os botões de filtro durante a requisição
 function setButtonsState(isDisabled) {
   filterButtons.forEach((button) => {
     button.disabled = isDisabled;
   });
 }
 
+// Atualiza a mensagem de feedback para o usuário, exibindo sucesso ou erro
 function showCategoryFeedback(message, isError = false) {
   categoryFeedback.textContent = message;
   categoryFeedback.style.color = isError ? '#b42318' : '#0a6f65';
 }
 
+// Pipeline acionado ao clicar em um filtro de categoria
 async function handleCategoryClick(category) {
   showCategoryFeedback('Carregando produtos...');
   setButtonsState(true);

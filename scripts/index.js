@@ -1,9 +1,12 @@
+// Endpoint utilizado para listar os produtos disponíveis no catálogo
 const API_URL = 'https://dummyjson.com/products';
+// Elementos principais da seção de produto aleatório
 const randomProductBtn = document.getElementById('randomProductBtn');
 const randomProductGallery = document.getElementById('randomProductGallery');
 const randomProductFeedback = document.getElementById('randomProductFeedback');
 
 // Requisito 5: busca dos dados da API e sorteio de um produto
+// Obtém todos os produtos (limitados a 100) para que um deles seja sorteado
 async function fetchAllProducts() {
   const response = await fetch(`${API_URL}?limit=100`);
   if (!response.ok) {
@@ -13,6 +16,7 @@ async function fetchAllProducts() {
   return data.products ?? [];
 }
 
+// Constrói o HTML do cartão de produto, com fallback para a imagem
 function buildProductCard(product) {
   const image = Array.isArray(product.images) && product.images.length ? product.images[0] : product.thumbnail;
   return `
@@ -27,15 +31,18 @@ function buildProductCard(product) {
   `;
 }
 
+// Renderiza apenas o produto sorteado na galeria
 function showProduct(product) {
   randomProductGallery.innerHTML = buildProductCard(product);
 }
 
+// Exibe mensagens de status ou erro ao usuário
 function showFeedback(message, isError = false) {
   randomProductFeedback.textContent = message;
   randomProductFeedback.style.color = isError ? '#b42318' : '#0a6f65';
 }
 
+// Fluxo central que busca os produtos, sorteia um e atualiza a UI
 async function handleRandomProduct() {
   if (!randomProductBtn) return;
   randomProductBtn.disabled = true;
@@ -57,6 +64,7 @@ async function handleRandomProduct() {
   }
 }
 
+// Garante que o botão só adiciona o listener caso exista na página atual
 if (randomProductBtn) {
   randomProductBtn.addEventListener('click', handleRandomProduct);
 }

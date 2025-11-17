@@ -1,6 +1,8 @@
+<!-- Documento principal da aplicação com foco no sorteio de produtos -->
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
+    <!-- Metadados essenciais e import do CSS global -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AP2 Store | Sorteio de Produto</title>
@@ -9,6 +11,7 @@
   <body>
     <!-- Requisito 1 e 2: Header com ícone, navegação e menu responsivo -->
     <header class="site-header">
+      <!-- Bloco de identificação visual -->
       <div class="logo" aria-label="Luck Store">
         <img class="logo-img" src="logo.jpg" alt="">
         <span>
@@ -16,9 +19,11 @@
           <span>Store</span>
         </span>
       </div>
+      <!-- Botão que ativa o menu em telas menores -->
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-navigation">
         Menu
       </button>
+      <!-- Navegação principal disponível no cabeçalho -->
       <nav id="site-navigation" class="site-nav" aria-label="Navegação principal">
         <a href="index.html">Início</a>
         <a href="produtos.html">Categorias</a>
@@ -40,7 +45,9 @@
       <!-- Requisitos 4 e 5: Main com container da galeria e card com dados da API -->
       <section class="gallery-section" aria-live="polite">
         <h2 class="sr-only">Galeria do produto sorteado</h2>
+        <!-- Contêiner que receberá dinamicamente o cartão sorteado -->
         <div id="randomProductGallery" class="gallery single-column"></div>
+        <!-- Mensagens de status mostradas durante a interação -->
         <p id="randomProductFeedback" class="status-message" role="status"></p>
       </section>
     </main>
@@ -50,6 +57,7 @@
       © 2025 Mauricio Gomes | Feito para fins educacionais
     </footer>
 
+    <!-- Scripts compartilhados e específicos desta página -->
     <script src="scripts/common.js" defer></script>
     <script src="scripts/index.js" defer></script>
   </body>
